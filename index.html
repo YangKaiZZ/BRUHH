@@ -191,11 +191,45 @@
       display: flex; justify-content: center; align-items: center;
       font-family: 'Great Vibes', cursive; font-size: 2.5rem; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
     }
+    /* Photo Gallery (Polaroid Style) */
+.gallery {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin: 20px 0;
+  max-width: 600px;
+}
+
+.polaroid {
+  background: white;
+  padding: 6px;
+  padding-bottom: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transform: rotate(-3deg);
+  transition: transform 0.3s, z-index 0.3s;
+  width: 110px; /* Small size for mobile */
+  border-radius: 4px;
+}
+
+.polaroid img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 2px;
+  display: block;
+}
+
+/* Randomize rotation for "scattered" look */
+.polaroid:nth-child(even) { transform: rotate(4deg); margin-top: 10px; }
+.polaroid:nth-child(odd) { transform: rotate(-5deg); }
+.polaroid:hover { transform: scale(1.5) rotate(0deg); z-index: 10; cursor: pointer; }
   </style>
 </head>
 <body>
 
-  <div id="loader">For my Lovie... 💙💖</div>
+  <div id="loader">Loading something for u Lovie... 💙💖</div>
 
   <div class="container fade-in" id="mainContainer">
     
@@ -211,7 +245,7 @@
     <div id="step2" class="hidden">
       <h1>First Stop... ❤️</h1>
       <div class="img-frame">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/7/73/Our_Lady_of_Sorrows_Parish_Church.jpg" alt="Church">
+        <img src="church.jpg" alt="Church">
       </div>
       <h2>Our Lady of Sorrows</h2>
       <p>To thank God for us. 🙏</p>
@@ -223,23 +257,24 @@
       <p>Where should we go after church?</p>
       
       <div class="options-grid">
+        
         <div class="location-card" onclick="showPlan('Lakeshore')">
-          <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Lakeshore">
+          <img src="lakeshore.jpg" alt="Lakeshore">
           <h3>Lakeshore</h3>
         </div>
         
         <div class="location-card" onclick="showPlan('Capital Town')">
-          <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=400&q=80" alt="Capital Town">
+           <img src="capital.jpg" alt="Capital Town">
           <h3>Capital Town</h3>
         </div>
 
         <div class="location-card" onclick="showPlan('Jungle Base')">
-          <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=400&q=80" alt="Jungle Base">
+           <img src="jungle.jpg" alt="Jungle Base">
           <h3>Jungle Base</h3>
         </div>
 
         <div class="location-card" onclick="showPlan('SM')">
-          <img src="https://images.unsplash.com/photo-1517604931442-71053e3e2c28?auto=format&fit=crop&w=400&q=80" alt="SM">
+           <img src="sm.jpg" alt="SM">
           <h3>SM</h3>
         </div>
       </div>
@@ -259,7 +294,15 @@
   </div>
 
   <div id="finalPage">
-    <h1 style="color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.2);">It's a Date! 💑</h1>
+    <h1 style="color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.2);">See u Saturay Lovie! 💑</h1>
+    <div class="gallery">
+      <div class="polaroid"><img src="lovie1.jpg" alt="Lovie 1"></div>
+      <div class="polaroid"><img src="lovie2.jpg" alt="Lovie 2"></div>
+      <div class="polaroid"><img src="lovie3.jpg" alt="Lovie 3"></div>
+      <div class="polaroid"><img src="lovie4.jpg" alt="Lovie 4"></div>
+      <div class="polaroid"><img src="lovie5.jpg" alt="Lovie 5"></div>
+    </div>
+    
     <p id="finalMessage" style="color: white; font-size: 1.5rem; margin-top: 20px;">See you Saturday!</p>
     <div style="font-size: 4rem; margin-top: 20px;">💙💖</div>
   </div>
@@ -278,14 +321,14 @@
         "Try different cafes ☕"
       ],
       'Jungle Base': [
-        "Take  pics at Photobooth 📸",
-        "Drink MATCHAAAAA OR COFFEEE☕",
+        "Take cute pics at Photobooth 📸",
+        "Drink Coffee ☕",
         "Eat good food 🍰"
       ],
       'SM': [
-        "Watch a Horror Movie 👻 GABI NG LAGIMM",
-        "Eat at ur fav restaurant or try other food 🍕",
-        "Tambay & Chill in SKYRANCH💕"
+        "Watch a Horror Movie 👻",
+        "Eat something yummy 🍕",
+        "Tambay & Chill 💕"
       ]
     };
 
@@ -371,7 +414,7 @@
     }
 
     letsGoBtn.addEventListener('click', () => {
-      finalMessage.innerText = "Can't wait for " + selectedLocation + " with you! 🥰";
+      finalMessage.innerText = "Can't wait for " + selectedLocation + " with you! LOVIEEE🥰";
       document.querySelector('.container').style.opacity = '0';
       setTimeout(() => {
         finalPage.style.display = 'flex';
